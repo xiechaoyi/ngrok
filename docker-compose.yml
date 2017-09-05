@@ -1,11 +1,7 @@
-server:
+ngrok:
   image: xiechaoyi/ngrok
-  ports:
-    - "80:80"
-    - "443:443"
-    - "4443:4443"
-  volumes:
-    - /data/ngrok:/wln
+  net: host
   environment:
-    - DOMAIN="wln.io"
-  command: /bin/sh /start.sh
+    - DOMAIN=wln.io
+  volumes:
+    - /docker/ngrok:/wln
