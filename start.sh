@@ -6,4 +6,4 @@ if [ ! -f "${MY_FILES}/ngrokd" ]; then
     /bin/sh /build.sh
 	chmod 777 ${MY_FILES}/ngrokd
 fi
-${MY_FILES}/ngrokd -tlsKey=/cert/server.key -tlsCrt=/cert/server.crt -domain="${DOMAIN}" -httpAddr=":80" -httpsAddr=":443" -tunnelAddr=":4443"
+${MY_FILES}/ngrokd -tlsKey=/cert/server.key -tlsCrt=/cert/server.crt -domain="${DOMAIN}" -httpAddr=":8080" -httpsAddr=":443" -tunnelAddr=":4443"
