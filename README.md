@@ -1,28 +1,15 @@
-# 使用Docker搭建Ngrok服务器
-
-## 准备工作
-* 公网服务器一台并且安装docker
-* 域名一枚,做Ngrok服务器域名，如：wln.io
-* 生成自己的CA根证书及Ngrok域名证书，并覆盖cert目录中的ca.cer、server.crt及server.key文件
-* 拉取镜像 docker pull xiechaoyi/ngrok
-
-## 首先启动一个容器生成ngrok客户端
+# 自用开发环境搭建
+## 启动Ngrok server
+直接挂载刚刚的/docker/ngrok到容器/wln目录即可启动服务
 ```linux
-docker run --rm -it -e DOMAIN="wln.io" -v /docker/ngrok:/wln xiechaoyi/ngrok /bin/sh /start.sh
+sudo docker run -d --network host -v /ngrok:/wln -e DOMAIN=xiechaoyi.com --name=ngrok xiechaoyi/ngrok
 ```
 当看到build ok !的时候,就可以在我们挂载的宿主目录/docker/ngrok下看到生成的客户端和服务端
-
 ```
 ngrok                     linux客户端
 ngrokd                    linux服务端
 windows_amd64/ngrok.exe   windows客户端
 windows_amd64/ngrokd.exe  windows服务端
-```
-
-## 启动Ngrok server
-直接挂载刚刚的/docker/ngrok到容器/wln目录即可启动服务
-```linux
-docker run -d -p 4443:4443 -e DOMAIN="wln.io" -v /docker/ngrok:/wln xiechaoyi/ngrok
 ```
 
 ## 服务端参数说明
@@ -34,15 +21,14 @@ docker run -d -p 4443:4443 -e DOMAIN="wln.io" -v /docker/ngrok:/wln xiechaoyi/ng
 ```
 
 ## 客户端连接
-* 下载我们生成的客户端（官方下载：https://ngrok.com/download）
 * 首先创建一个ngrok.cfg配置文件
 * trust_host_root_certs #是否信任系统根证书，如果是带自签名证书编译的 ngrok 客户端，这个值应该设置为 false；如果使用 CA 证书，或者用户添加了根证书，这个值应该设置为 true
 * proto下协议为http时，lable为子域名
 ```
-server_addr: "wln.io:4443"
+server_addr: "xiechaoyi.com:4443"
 trust_host_root_certs: false
 tunnels:
-  test:
+  http:
     proto:
       http: 80
   mysql:

@@ -18,6 +18,6 @@ GOOS=windows GOARCH=amd64 make release-server
 #GOOS=darwin GOARCH=amd64 make release-client
 #GOOS=linux GOARCH=arm make release-client
 
-cp -rf /ngrok/bin/* ${MY_FILES}
+cp -rf /ngrok/bin/* /wln
 
 echo "build ok !"
