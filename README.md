@@ -2,7 +2,7 @@
 ## 启动Ngrok server
 直接挂载刚刚的/docker/ngrok到容器/wln目录即可启动服务
 ```linux
-sudo docker run -d --network host -v /ngrok:/wln -e DOMAIN=xiechaoyi.com --name=ngrok xiechaoyi/ngrok
+sudo docker run -d --restart=on-failure --network host -v /ngrok:/wln -e DOMAIN=xiechaoyi.com --name=ngrok xiechaoyi/ngrok
 ```
 当看到build ok !的时候,就可以在我们挂载的宿主目录/docker/ngrok下看到生成的客户端和服务端
 ```
