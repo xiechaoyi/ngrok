@@ -2,7 +2,10 @@
 ## 启动Ngrok server
 直接挂载刚刚的/docker/ngrok到容器/wln目录即可启动服务
 ```linux
-sudo docker run -d --restart=always --network host -v /ngrok:/wln -e DOMAIN=xiechaoyi.com --name=ngrok xiechaoyi/ngrok
+sudo docker run -d --restart=always --network host --name=ngrok \
+-v /mnt/exec/Runtime/ngrok:/wln \
+-e DOMAIN=xiechaoyi.com \
+xiechaoyi/ngrok
 ```
 当看到build ok !的时候,就可以在我们挂载的宿主目录/docker/ngrok下看到生成的客户端和服务端
 ```
@@ -15,8 +18,8 @@ windows_amd64/ngrokd.exe  windows服务端
 ## 服务端参数说明
 ```
  -domain 访问ngrok是所设置的服务地址生成证书时那个
- -httpAddr http协议端口 默认为80
- -httpsAddr https协议端口 默认为443 （可配置https证书）
+ -httpAddr http协议端口 默认为8080
+ -httpsAddr https协议端口 默认为8443 （可配置https证书）
  -tunnelAddr 通道端口 默认4443（管理用）
 ```
 
