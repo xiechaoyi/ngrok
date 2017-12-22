@@ -6,4 +6,4 @@ if [ ! -f "/wln/ngrokd" ]; then
     /bin/sh /build.sh
 	chmod 777 /wln/ngrokd
 fi
-/wln/ngrokd -tlsKey=/cert/server.key -tlsCrt=/cert/server.crt -domain="${DOMAIN}" -httpAddr=":80" -httpsAddr=":443" -tunnelAddr=":4443"
+/wln/ngrokd -tlsKey=/cert/server.key -tlsCrt=/cert/server.crt -domain="${DOMAIN}" -httpAddr=":8080" -httpsAddr=":8443" -tunnelAddr=":4443"
